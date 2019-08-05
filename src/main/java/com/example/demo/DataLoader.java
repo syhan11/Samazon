@@ -86,16 +86,19 @@ public class DataLoader implements CommandLineRunner{
         tempproduct1.setImg ("https://m.media-amazon.com/images/I/71AFT1g7kZL._AC_UL654_SEARCH212385_FMwebp_QL65_.jpg");
         productRepository.save(tempproduct1);
 
-        tempproduct1 = new Product("Ladders 2019 Interviews Guide",
-                "Based on 15 years experience, the feedback from millions of readers, and over 100,000 HR professionals, recruiters, and hiring managers.",14.99, 3);
-        tempproduct1.setCategory (tempcategory);
-        tempproduct1.setImg ("https://images-na.ssl-images-amazon.com/images/I/414if654kfL._SX322_BO1,204,203,200_.jpg");
-        productRepository.save(tempproduct1);
-
         tempproduct1 = new Product("What Color Is Your Parachute?",
                 "A Practical Manual for Job-Hunters and Career-Changers",14.99, 7);
         tempproduct1.setCategory (tempcategory);
         tempproduct1.setImg ("https://m.media-amazon.com/images/I/71HZYFfwiAL._AC_UL654_SEARCH212385_FMwebp_QL65_.jpg");
+        productRepository.save(tempproduct1);
+
+
+
+
+        tempproduct1 = new Product("Ladders 2019 Interviews Guide",
+                "Based on 15 years experience, the feedback from millions of readers, and over 100,000 HR professionals, recruiters, and hiring managers.",14.99, 3);
+        tempproduct1.setCategory (tempcategory);
+        tempproduct1.setImg ("https://images-na.ssl-images-amazon.com/images/I/414if654kfL._SX322_BO1,204,203,200_.jpg");
         productRepository.save(tempproduct1);
 
 

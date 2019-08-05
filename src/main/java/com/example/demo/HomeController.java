@@ -5,7 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /*
  * This controller will deal with all but security (login & register)
@@ -83,6 +90,52 @@ public class HomeController {
         return "search";
     }
 
+//    @GetMapping("/search")
+//    public String showRegistrationPage(Model model){
+//        model.addAttribute("user", new User());
+//        return "registration";
+//    }
 
+    @RequestMapping("/search")
+    public String processRegistrationPage(@ModelAttribute("keyword") String keyword,
+                                          Model model) {
+        ArrayList<Product> searchresult = new ArrayList<Product>();
+        ArrayList<Product> sear = productRepository.findAllByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(keyword, keyword);
+
+
+        // only unique products
+        for (Product element : sear) {
+
+            // If this element is not present in newList
+            // then add it
+            if (!searchresult.contains(element)) {
+
+                searchresult.add(element);
+            }
+        }
+
+        User tmpuser = userService.getUser();
+        Long userid;
+
+        if (tmpuser != null) {
+            userid = tmpuser.getId();
+            String name = tmpuser.getUsername();
+
+            if (tmpuser.hasAuthority("ADMIN")) {
+                model.addAttribute("nocartitems", orderHistoryRepository.countByStatusEquals(ORDORDERED));
+            }
+            else {
+                tmpuser = userRepository.findByUsername(name);
+                model.addAttribute("nocartitems",orderHistoryRepository.countByOrduserEqualsAndStatusEquals(tmpuser, ORDSTANDBY));
+            }
+        }
+
+
+        model.addAttribute("searchresult", searchresult);
+        model.addAttribute ("orderhist", new OrderHistory(userService.getUser()));
+
+        return "search";
+
+    }
 
 }

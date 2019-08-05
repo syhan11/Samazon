@@ -23,9 +23,9 @@
 <div class="admincontain" style="alignment: center; align-content: center; padding: 7px">
     <table class="admintable" style="padding: 5px">
         <tr>
-            <h3 style="text-align: center" th:text="${#lists.size(allopenorders)==0}?'No more open orders'"></h3>
+            <h3 style="text-align: center" th:text="${#lists.size(allopenorders)==0}?'Try different search'"></h3>
         </tr>
-        <tr class="admintr" th:each="openorder: ${allopenorders}"
+        <tr class="admintr" th:each="item: ${alllist}"
             style="border: 1px solid darkgray; alignment: center; padding-left: 10px; padding-right: 10px">
             <td class="admintd" style="width: 30%; padding: 10px">
                 <h3 th:text="${openorder.getOrderId()}">Oder No: </h3>

@@ -151,23 +151,12 @@ public class AdminController {
 
     }
 
-    @RequestMapping("/sendemail")
-    public String sendEmail(){
-        return "search";
-    }
+//    @RequestMapping("/search")
+//    public String sendEmail(){
+//
+//        return "search";
+//    }
 
-    /******
-    @RequestMapping("/adminorder")
-    public String adminOrder(Model model) {
-
-        //pass currently logged-in user information to index.html
-        User crntuser = userService.getUser();
-        if (crntuser != null)
-            model.addAttribute("crntuser", crntuser);
-
-        return "adminorder";
-    }
-*************/
 
 
 }
